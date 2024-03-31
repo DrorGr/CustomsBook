@@ -1,0 +1,29 @@
+<div class="mainTable_item">
+    <div class="mainTable_itemToggle" [class.active]="selected" (click)="selected = !selected"><button><i role="img"
+                aria-hidden="true"> <fa-icon [icon]="faArrowAltCircleLeft"
+                    (click)="showChildern.emit()"></fa-icon></i></button></div>
+    <div class="mainTable_itemName" (click)="showDetails.emit()"><a href="#" role="button">{{data}}</a></div>
+    <div class="mainTable_itemActions">
+        <ul>
+            <li>
+                <div class="mainTable_itemDocument"><a class="icon"><i role="img" class="icon-document"> </i></a>
+                </div>
+            </li>
+            <li>
+                <div class="mainTable_itemPopup"><a class="icon"><i role="img" class="icon-popup"></i> </a></div>
+            </li>
+            <li>
+                <div class="mainTable_itemComment" (click)="showAddCommentSidebar()"><a class="icon">
+                        <i role="img" class="icon-comment_plus"></i></a>
+                </div>
+            </li>
+            <li>
+                <div class="mainTable_itemStarred" (click)="checked = !checked"><a class="icon"><i role="img"
+                            [class]="checked? ' icon-star_full' :'icon-star' ">
+                        </i></a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

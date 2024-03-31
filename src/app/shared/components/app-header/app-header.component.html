@@ -1,0 +1,35 @@
+<div class="centeredContent">
+    <div class="headerFlex">
+        <div class="headerLeft">
+            <div class="headerUser"><a href="#" role="button">
+                    <span>יונתן
+                        שמעוני</span>
+                    <img src="../../../../assets/images/man.jpg" alt="">
+                </a>
+            </div>
+            <div class="headerFavorites"><button>
+                    <span>המועדפים
+                        שלי</span><fa-icon [icon]="faStar" role="img" aria-hidden="true"></fa-icon></button></div>
+
+        </div>
+        <div class="headerToggle">
+            <ul role="tablist">
+
+                <li (click)="selected=0" [className]="selected ===0 && 'checked'">
+                    <label><input type="radio" name="pageSearch_toggle" [checked]="selected===0" class="fst-btn"
+                            aria-controls="sectionSelect1"><span>אוטונומיה</span></label>
+                </li>
+                <li (click)="selected=1" [className]="selected ===1 && 'checked'">
+                    <label><input type="radio" checked="" name="pageSearch_toggle" [checked]="selected===1"
+                            class="fst-btn" aria-controls="sectionSelect1"><span>יצוא</span></label>
+                </li>
+                <li (click)="selected=2" [className]="selected ===2 && 'checked'">
+                    <label><input type="radio" checked="" name="pageSearch_toggle" [checked]="selected===2"
+                            class="fst-btn" aria-controls="sectionSelect1"><span>יבוא</span></label>
+                </li>
+            </ul>
+        </div>
+        <div class="headerLogo"><a href="#"><img class="logoImage" src="../../../../assets/images/amital.png"
+                    alt="UNIFREIGHT"></a></div>
+    </div>
+</div>
