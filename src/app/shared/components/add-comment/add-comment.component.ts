@@ -1,5 +1,5 @@
 import { Component, SimpleChanges } from '@angular/core';
-import { AddCommentService } from './shared/services.service';
+import { AddCommentService } from './service/add-comment.service';
 
 @Component({
   selector: 'app-add-comment',

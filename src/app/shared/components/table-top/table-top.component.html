@@ -1,39 +1,54 @@
 <div class="mainTable_top">
-    <h2>קטגוריות ספר מכס</h2>
-    <ul>
-        <li>הסכמים</li>
-        <li>ש. מכס</li>
-        <li>מס קניה</li>
-        <li>תמ”א</li>
-        <li>יח’ סטטיסטית</li>
-    </ul>
-    <div class="searchResults_top">
-        <div class="searchResults_filter">
-            <!-- <div class="searchResults_filterToggle"><a href="#" role="button" aria-controls="searchResults_filterPop"
-                    title="סינון תוצאות"><i role="img" aria-hidden="true" class="icon-filter"></i><i role="img"
-                        aria-hidden="true" class="icon-filter_full"></i><span>0</span></a></div> -->
-            <div id="searchResults_filterPop" class="searchResults_filterPop">
-                <div class="searchResults_filterPop_title">
-                    <strong>בחרו סננים</strong>
-                    <a href="#" class="searchResults_filterPop_clear" role="button">נקה הכל</a>
-                </div>
-                <div class="searchResults_filterPop_list">
-                    <b>חפש ב:</b>
-                    <ul>
-                        <li><label><input type="checkbox"><span>חלקים</span></label></li>
-                        <li><label><input type="checkbox"><span>פרקים</span></label></li>
-                        <li><label><input type="checkbox"><span>פרט</span></label></li>
-                        <li><label><input type="checkbox"><span>סעיף</span></label></li>
-                        <li><label><input type="checkbox"><span>פרטי מכס</span></label></li>
-                        <li><label><input type="checkbox"><span>כללים</span></label></li>
-                        <li><label><input type="checkbox"><span>הערות</span></label></li>
-                    </ul>
-                </div>
-                <div class="searchResults_filterPop_submit"><button>סינון</button></div>
-                <div class="trapFocus"><a href="#" role="button">חזור להתחלת הפאנל</a></div>
-            </div>
-        </div>
-        <!-- <div class="searchResults_close"><a href="#" role="button"><i role="img" aria-hidden="true"
-                            class="icon-close"></i><span>ניקוי תוצאות</span></a></div> -->
-    </div>
+	<h2>{{ service?.getTableTop() }}</h2>
+	<ul>
+		<li *ngFor="let item of service?.getCategories()">
+			{{ item }}
+		</li>
+	</ul>
+	<div class="searchResults_top">
+		<div class="searchResults_filter">
+			<div class="searchResults_filterToggle">
+				<a href="#" role="button" aria-controls="searchResults_filterPop" title="סינון תוצאות" aria-expanded="true"
+					><i role="img" class="icon-filter"></i><i role="img" class="icon-filter_full"></i><span>0</span></a
+				>
+			</div>
+			<div id="searchResults_filterPop" class="searchResults_filterPop shown" aria-hidden="false">
+				<div class="searchResults_filterPop_title">
+					<strong>בחרו סננים</strong>
+					<a href="#" class="searchResults_filterPop_clear" role="button">נקה הכל</a>
+				</div>
+				<div class="searchResults_filterPop_list">
+					<b>חפש ב:</b>
+					<ul>
+						<li>
+							<label><input type="checkbox" /><span>חלקים</span></label>
+						</li>
+						<li>
+							<label><input type="checkbox" /><span>פרקים</span></label>
+						</li>
+						<li>
+							<label><input type="checkbox" /><span>פרט</span></label>
+						</li>
+						<li>
+							<label><input type="checkbox" /><span>סעיף</span></label>
+						</li>
+						<li>
+							<label><input type="checkbox" /><span>פרטי מכס</span></label>
+						</li>
+						<li>
+							<label><input type="checkbox" /><span>כללים</span></label>
+						</li>
+						<li>
+							<label><input type="checkbox" /><span>הערות</span></label>
+						</li>
+					</ul>
+				</div>
+				<div class="searchResults_filterPop_submit"><button>סינון</button></div>
+				<div class="trapFocus"><a href="#" role="button">חזור להתחלת הפאנל</a></div>
+			</div>
+		</div>
+		<div class="searchResults_close">
+			<a href="#" role="button"><i role="img" aria-hidden="true" class="icon-close"></i><span>ניקוי תוצאות</span></a>
+		</div>
+	</div>
 </div>

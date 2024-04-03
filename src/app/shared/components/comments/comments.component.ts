@@ -1,6 +1,6 @@
 
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { AddCommentService } from '../add-comment/shared/services.service';
+import { AddCommentService } from '../add-comment/service/add-comment.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 

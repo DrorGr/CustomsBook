@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
+import { Service } from './service/top-page.service';
 
 @Component({
-  selector: 'app-page-top',
-  standalone: true,
-  imports: [],
-  templateUrl: './page-top.component.html',
-  styleUrl: './page-top.component.css'
+	selector: 'app-page-top',
+	standalone: true,
+	imports: [],
+	templateUrl: './page-top.component.html',
+	styleUrl: './page-top.component.css',
 })
 export class PageTopComponent {
+	constructor(public service: Service) {
+		this.service = new Service();
+	}
 
-  searchBy: number | string = 'pageSearch_form01';
+	public text: string = '';
+	public checked: string | number = '';
 
+	ngOnInit() {
+		this.text = this.service.SearchBy('searchBy_form01');
+		this.checked = this.service.GetDefaultValue();
+	}
+
+	public search(id: string) {
+		this.checked = id;
+		this.text = this.service.SearchBy(id);
+	}
 }
