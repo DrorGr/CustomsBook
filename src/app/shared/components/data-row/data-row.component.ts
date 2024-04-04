@@ -4,40 +4,32 @@ import { faStar as faStarBold, faChevronLeft, faChevronDown } from '@fortawesome
 import { faStar, faCommentDots, faSquareCaretRight, faFileText } from '@fortawesome/free-regular-svg-icons';
 import { AddCommentService } from '../add-comment/service/add-comment.service';
 
-
 @Component({
-  selector: 'app-data-row',
-  standalone: true,
-  imports: [FontAwesomeModule],
-  templateUrl: './data-row.component.html',
-  styleUrl: './data-row.component.css'
+	selector: 'app-data-row',
+	standalone: true,
+	imports: [FontAwesomeModule],
+	templateUrl: './data-row.component.html',
+	styleUrl: './data-row.component.css',
 })
-
-
 export class DataRowComponent {
-  @Output() showDetails: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() showChildern: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input() data: any;
-  faStar = faStar;
-  faStarBold = faStarBold;
-  faComments = faCommentDots;
-  faCaretSquareRight = faSquareCaretRight;
-  faArrowAltCircleLeft = faChevronLeft;
-  faChevronDown = faChevronDown;
-  faFileArchive = faFileText;
-  checked: boolean = false;
-  selected: boolean = false;
-  constructor(private addCommentService: AddCommentService) { }
-  showAddComment = this.addCommentService.getIsOpened();
+	@Output() showDetails: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() showChildern: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Input() data: any;
+	faStar = faStar;
+	faStarBold = faStarBold;
+	faComments = faCommentDots;
+	faCaretSquareRight = faSquareCaretRight;
+	faArrowAltCircleLeft = faChevronLeft;
+	faChevronDown = faChevronDown;
+	faFileArchive = faFileText;
+	checked: boolean = false;
+	selected: boolean = false;
+	constructor(private addCommentService: AddCommentService) {}
+	showAddComment = this.addCommentService.getIsOpened();
 
+	showAddCommentSidebar() {
+		this.addCommentService.setIsOpened(true);
+	}
 
-  showAddCommentSidebar() {
-    this.addCommentService.setIsOpened(true);
-  }
-
-  ngOnInit() {
-
-  }
+	ngOnInit() {}
 }
-
-

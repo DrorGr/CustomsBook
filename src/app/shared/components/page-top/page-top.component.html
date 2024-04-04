@@ -34,10 +34,10 @@
 			<div class="pageSearch_form">
 				<fieldset>
 					<div class="pageSearch_formField shown" [id]="text">
-						<input type="text" [placeholder]="text" />
+						<input type="text" (input)="onChange($event)" [placeholder]="text" />
 					</div>
 
-					<button>חיפוש</button>
+					<button (click)="searchClick.emit()">חיפוש</button>
 				</fieldset>
 			</div>
 		</div>

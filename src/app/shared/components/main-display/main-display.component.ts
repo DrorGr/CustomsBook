@@ -30,6 +30,7 @@ import { mockData } from '../../../../../mock_data';
 })
 export class MainDisplayComponent {
 	@Input() showChiledren: boolean = false;
+	@Input() itemsData;
 	showDetails: boolean = false;
 	showAddComment: boolean = false;
 	showCommentSidebar: boolean = false;
@@ -47,6 +48,9 @@ export class MainDisplayComponent {
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes['showDetails']) {
 			this.showDetails = changes['showDetails'].currentValue;
+		}
+		if (changes['itemsData']) {
+			this.itemsData = changes['itemsData'].currentValue;
 		}
 	}
 

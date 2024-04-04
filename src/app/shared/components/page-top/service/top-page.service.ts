@@ -12,6 +12,11 @@ import { Injectable } from '@angular/core';
 export class Service {
 	private _Default_selectSearchBy: number | string = 'pageSearch_form01';
 	selectSearchBy = SearchBy[this._Default_selectSearchBy as keyof typeof SearchBy];
+	private _SearchText: string;
+
+	ngOnInit() {
+		sessionStorage.removeItem('searchText');
+	}
 
 	SearchBy(value?: number | string) {
 		!value
@@ -21,7 +26,18 @@ export class Service {
 	}
 
 	GetDefaultValue() {
+		sessionStorage.removeItem('searchText');
 		return this._Default_selectSearchBy;
+	}
+
+	GetSearchText() {
+		this._SearchText = sessionStorage.getItem('searchText') || '';
+		return this._SearchText;
+	}
+
+	SetSearchText(value: string) {
+		this._SearchText = value;
+		sessionStorage.setItem('searchText', value);
 	}
 }
 

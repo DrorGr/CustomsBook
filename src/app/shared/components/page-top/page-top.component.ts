@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Service } from './service/top-page.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { Service } from './service/top-page.service';
 	styleUrl: './page-top.component.css',
 })
 export class PageTopComponent {
+	@Output() searchClick = new EventEmitter();
+
 	constructor(public service: Service) {
 		this.service = new Service();
 	}
@@ -24,5 +26,9 @@ export class PageTopComponent {
 	public search(id: string) {
 		this.checked = id;
 		this.text = this.service.SearchBy(id);
+	}
+
+	onChange(event: any) {
+		this.service.SetSearchText(event.target.value);
 	}
 }
