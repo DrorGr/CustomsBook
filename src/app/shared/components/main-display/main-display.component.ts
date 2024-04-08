@@ -3,7 +3,7 @@ import { DataRowComponent } from '../data-row/data-row.component';
 import { DetailsFrameComponent } from '../details-frame/details-frame.component';
 import { TableTopComponent } from '../table-top/table-top.component';
 import { AddCommentComponent } from '../add-comment/add-comment.component';
-import { NgFor, NgForOf, NgIf } from '@angular/common';
+import { NgFor, NgForOf, NgIf, NgTemplateOutlet } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
 //@ts-ignore
 
@@ -12,7 +12,16 @@ import { mockData } from '../../../../../mock_data';
 @Component({
 	selector: 'app-main-display',
 	standalone: true,
-	imports: [NgFor, NgForOf, NgIf, DataRowComponent, DetailsFrameComponent, TableTopComponent, AddCommentComponent],
+	imports: [
+		NgFor,
+		NgForOf,
+		NgIf,
+		DataRowComponent,
+		DetailsFrameComponent,
+		TableTopComponent,
+		AddCommentComponent,
+		NgTemplateOutlet,
+	],
 	templateUrl: './main-display.component.html',
 	styleUrl: './main-display.component.css',
 	animations: [
@@ -41,16 +50,13 @@ export class MainDisplayComponent {
 	KeyValue = Object.keys;
 	Object: ObjectConstructor = Object;
 
-	ngOnInit() {
-		this.data = mockData;
-	}
-
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes['showDetails']) {
 			this.showDetails = changes['showDetails'].currentValue;
 		}
 		if (changes['itemsData']) {
 			this.itemsData = changes['itemsData'].currentValue;
+			this.data = orderedData(this.itemsData);
 		}
 	}
 
@@ -60,3 +66,22 @@ export class MainDisplayComponent {
 		return Boolean(isShown >= 0);
 	}
 }
+
+const orderedData = (data) => {
+	const getChildren = (parentItem) => {
+		const children = data.filter((item) => item?.Parent_CustomsItemID === parentItem?.ID);
+		children.forEach((child) => {
+			//@ts-ignore
+			child.children = getChildren(child);
+		});
+		return children;
+	};
+
+	const rootItems = data.filter((item) => !item?.Parent_CustomsItemID);
+	const orderedData = rootItems.map((rootItem) => {
+		const children = getChildren(rootItem);
+		return { ...rootItem, children };
+	});
+
+	return orderedData;
+};

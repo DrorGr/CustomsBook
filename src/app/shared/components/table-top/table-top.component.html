@@ -1,14 +1,14 @@
 <div class="mainTable_top">
 	<h2>{{ service?.getTableTop(this.state) }}</h2>
-	<h2>{{ this.state === 'search' && '( ' + 0 + ' )' }}</h2>
-	<ul>
+	<h2 *ngIf="this.resCount > 0 && this.state === 'search'">{{ '(' + this.resCount + ')' }}</h2>
+	<ul *ngIf="this.state === 'search'">
 		<li *ngFor="let item of service?.getCategories()">
 			{{ item }}
 		</li>
 	</ul>
-	<div class="searchResults_top">
+	<div *ngIf="this.state === 'search'" class="searchResults_top">
 		<div class="searchResults_close">
-			<a href="#" role="button"><i role="img" aria-hidden="true" class="icon-close"></i><span>ניקוי תוצאות</span></a>
+			<a role="button"><i role="img" aria-hidden="true" class="icon-close"></i><span>ניקוי תוצאות</span></a>
 		</div>
 		<app-filter-popup />
 	</div>

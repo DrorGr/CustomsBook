@@ -11,7 +11,7 @@
 	justify-content: center;
 	width: 100%;
 	font-weight: 700;
-	gap: 100px;
+	gap: 110px;
 	margin-top: 10px;
 	font-size: 12px;
 	overflow: hidden;
@@ -30,13 +30,12 @@
 	align-items: center;
 	justify-content: space-between;
 	white-space: nowrap;
-	/* overflow: hidden; */
 }
 
 .searchResults_close:before {
 	content: '|';
 	position: absolute;
-	left: 250px;
+	left: 280px;
 	top: 3px;
 	font-size: 22px;
 	color: var(--greyRO);
@@ -44,7 +43,22 @@
 
 .searchResults_close a {
 	display: flex;
+	width: 85px;
+	gap: 4px;
+	position: relative;
+	left: 180px;
+	top: -3px;
 	align-items: center;
-	font-size: 14px;
 	text-decoration: none;
+	& i {
+		font-size: 15px;
+	}
+	span {
+		left: -20px;
+	}
+
+	&:hover {
+		color: var(--blue);
+		cursor: pointer;
+	}
 }

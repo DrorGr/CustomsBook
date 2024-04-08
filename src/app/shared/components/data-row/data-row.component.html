@@ -1,14 +1,27 @@
-<div class="mainTable_item">
-	<div class="mainTable_itemToggle" [class.active]="selected" (click)="selected = !selected">
-		<button>
+<div class="mainTable_item" *ngIf="data">
+	<div class="mainTable_itemToggle" [class.active]="selected">
+		<button *ngIf="data.children?.length > 0">
 			<i role="img" aria-hidden="true">
-				<fa-icon [icon]="faArrowAltCircleLeft" (click)="showChildern.emit()"></fa-icon
+				<fa-icon [icon]="faArrowAltCircleLeft" (click)="showChildern?.emit()"></fa-icon
 			></i>
 		</button>
 	</div>
 	<div class="mainTable_itemName" (click)="showDetails.emit()">
-		<a href="#" role="button">{{ data }}</a>
+		<a href="#" role="button">
+			<span *ngIf="state === 'search'" class="full_classification">
+				{{ data?.FullClassification?.replace('-', '') }}
+			</span>
+			<span class="title_text">{{ data?.GoodsDescription }}</span>
+			<span *ngIf="state === 'search'" class="item_details">
+				<a> {{ data?.Agreements }} </a>
+				<a> {{ data?.CustomsRate }} </a>
+				<a> {{ data?.PurchaseTax }}</a>
+				<a> {{ data?.OptionalTaxAddition }}</a>
+				<a> {{ data?.MeasurementUnit }} </a>
+			</span>
+		</a>
 	</div>
+	<div></div>
 	<div class="mainTable_itemActions">
 		<ul>
 			<li>

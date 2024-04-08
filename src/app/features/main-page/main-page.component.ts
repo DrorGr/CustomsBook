@@ -1,12 +1,13 @@
-import { Component, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageTopComponent } from '../../shared/components/page-top/page-top.component';
 import { MainDisplayComponent } from '../../shared/components/main-display/main-display.component';
 import { AddCommentComponent } from '../../shared/components/add-comment/add-comment.component';
 import { CommonModule } from '@angular/common';
-import { CustomsBookExtendedListService } from '../../core/CustomsBookExtendedListService';
+import { API_MainService } from '../../core/API_MainService';
 import { Observable } from 'rxjs';
 import { FilterPopupService } from '../../shared/components/filter-popup/service/filter-popup.service';
 import { Service } from '../../shared/components/page-top/service/top-page.service';
+import { HeaderService } from '../../shared/components/app-header/service/header.service';
 
 @Component({
 	selector: 'app-main-page',
@@ -17,32 +18,45 @@ import { Service } from '../../shared/components/page-top/service/top-page.servi
 })
 export class MainPageComponent {
 	Service = new Service();
+	HeaderService = new HeaderService();
 	showAddComment: boolean = false;
 	filterService = new FilterPopupService();
 	itemsData: Observable<any>;
 	private _filters;
 
-	constructor(private customsBookExtendedListService: CustomsBookExtendedListService) {
+	constructor(private API_MainService: API_MainService, private headerService: HeaderService) {
 		this._filters = this.filterService.getFilters();
-		this.customsBookExtendedListService.GetCustomsBookMainView(this._filters).subscribe((data: any) => {
-			this.itemsData = data;
-		});
+		this.GetMainView();
 	}
 
 	SearchByText() {
 		let object = {
 			SearchFields: this.Service.GetSearchText(),
-			CustomsBookType: '2',
+			CustomsBookType: this.HeaderService.getSearchState(true),
 			CustomsItemHierarchic: '1,2,3',
 			Reamarks: false,
 			Rules: true,
 			SkippedRows: 0,
-			PageSize: 20,
+			PageSize: 0,
 		};
 
-		this.customsBookExtendedListService.GetCustomsBookMainViewSearchByText(object).subscribe((data: any) => {
+		this.API_MainService.GetCustomsBookMainViewSearchByText(object).subscribe((data: any) => {
 			this.itemsData = data;
-			console.log(data);
+		});
+	}
+
+	GetMainView() {
+		let object = {
+			CustomsBookType:
+				// this.HeaderService.getSearchState(true)
+				'3',
+			CustomsItemHierarchic: '1,2,3',
+			SkippedRows: 0,
+			PageSize: 10,
+		};
+
+		this.API_MainService.GetCustomsBookMainView(object).subscribe((data: any) => {
+			this.itemsData = data;
 		});
 	}
 }

@@ -4,7 +4,6 @@ import { AppHeaderComponent } from '../shared/components/app-header/app-header.c
 import { AppFooterComponent } from '../shared/components/app-footer/app-footer.component';
 import { MainPageComponent } from '../features/main-page/main-page.component';
 import { NgFor, NgForOf } from '@angular/common';
-import { CustomsBookExtendedListService } from './CustomsBookExtendedListService';
 import { CommonModule } from '@angular/common';
 
 @Component({

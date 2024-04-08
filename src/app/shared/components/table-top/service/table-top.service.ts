@@ -11,6 +11,6 @@ export class TableTopService {
 	}
 
 	getTableTop(state: string) {
-		return state === 'Search' ? ' קטרוגיות ספר מכס' : 'תוצאות חיפוש';
+		return state === 'Search' ? ' תוצאות חיפוש  ' : ' קטרוגיות ספר מכס';
 	}
 }
